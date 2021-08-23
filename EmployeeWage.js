@@ -46,11 +46,26 @@ let empDailyWageArr = new Array();
 
 while(totalEmpHr <= MAx_HRS_IN_MONTH &&
    totalWorkingDay < NUM_OF_WORKING_DAY ){
-  totalWorkingDay++;
-  let empCheck = Math.floor(Math.random()*10)%3;
-  totalEmpHr += getWorkingHours(empCheck);
-  empDailyWageArr.push(calcDailyWage(totalEmpHr)) // pushing total emp wage into array
+   totalWorkingDay++;
+   let empCheck = Math.floor(Math.random()*10)%3;
+   totalEmpHr += getWorkingHours(empCheck);
+   empDailyWageArr.push(calcDailyWage(totalEmpHr)) // pushing total emp wage into array
 }
 let empWage = calcDailyWage(totalEmpHr);
 console.log("UC6 - Total Day: "+totalWorkingDay+ " Total Emp Hrs: "+totalEmpHr+ " Emp Wage: "+empWage );
 console.log(empDailyWageArr);
+
+// Array helper Function UC7A
+let totalEmpWage = 0; 
+function sum(dailyWage){
+  totalEmpWage +=dailyWage;
+}
+
+empDailyWageArr.forEach(sum);
+console.log("UC7A - Total Day: "+totalWorkingDay+ " Total Emp Hrs: "+totalEmpHr+ " Emp Wage: "+totalEmpWage );
+
+function totalWages(totalWage, dailyWage){
+  return totalWage + dailyWage;
+}
+console.log("UC7A- Emp Wage With Reduce: "+ empDailyWageArr.reduce(totalWages,0));
+
